@@ -2,66 +2,68 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-class Square extends React.Component {
-  render() {
-    return (
-      <button className="square">
-        {/* TODO */}
-      </button>
-    );
-  }
-}
+// ========================================
 
-class Board extends React.Component {
-  renderSquare(i) {
-    return <Square />;
+class MainApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputText: '{"test": "true"}',
+      inputJSON: {}
+    }
+    this.loadInput = this.loadInput.bind(this);
+    this.saveInput = this.saveInput.bind(this);
+  }
+  // componentWillUpdate(){
+  //   console.log('App will update...');
+  // }
+  // componentDidUpdate(){
+  //   console.log('App updated...');
+  // }
+  componentDidMount() {
+    console.log('App mounted...');
+
+    //Event listeners...
+    const loadBtn = document.getElementById('LoadBtn');
+    const saveBtn = document.getElementById('SaveBtn');
+    loadBtn.addEventListener('click', () => {this.loadInput();});
+    saveBtn.addEventListener('click', () => {this.saveInput();});
+  }
+
+  loadInput(){
+    let textInput = document.getElementById("inputArea").value;
+
+    this.setState ({
+      inputText: textInput,
+      inputJSON: JSON.parse(textInput)
+    });
+
+    console.log(this.state.inputText);
+    console.log(this.state.inputJSON);
+  }
+
+  saveInput(){
+
   }
 
   render() {
-    const status = 'Next player: X';
 
     return (
       <div>
-        <div className="status">{status}</div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
+        <div>
+          <textarea id='inputArea' rows="4" cols="50">{this.state.inputText}</textarea>
+          <div id='outputArea'></div>
         </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+        <button id='LoadBtn'>Load</button>
+        <button id='SaveBtn'>Save</button>
       </div>
     );
   }
-}
-
-class Game extends React.Component {
-  render() {
-    return (
-      <div className="game">
-        <div className="game-board">
-          <Board />
-        </div>
-        <div className="game-info">
-          <div>{/* status */}</div>
-          <ol>{/* TODO */}</ol>
-        </div>
-      </div>
-    );
-  }
-}
+};
 
 // ========================================
 
 ReactDOM.render(
-  <Game />,
+  <MainApp />,
   document.getElementById('root')
 );
