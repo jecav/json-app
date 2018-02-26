@@ -20,6 +20,16 @@ body {
   border: 1px solid black;
 }
 
+p {
+  width: 85%;
+  margin: auto;
+  text-align: left;
+}
+
+hr {
+  width: 85%;
+}
+
 button{
   width: 100px;
   height: 40px;
