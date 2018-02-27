@@ -16,11 +16,9 @@ body {
   height: 320px;
   margin: 10px;
   padding: 10px;
-  display: inline-block;
-  border: 1px solid black;
 }
 
-p {
+.instructions {
   width: 85%;
   margin: auto;
   text-align: left;
@@ -33,5 +31,5 @@ hr {
 button{
   width: 100px;
   height: 40px;
-  margin: 20px;
+  margin: 20px 80px;
 }
